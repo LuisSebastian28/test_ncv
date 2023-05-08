@@ -31,3 +31,12 @@ jobs:
 
       - name: Unit Tests
         run: npm test -- --watchAll=false  --passWithNoTests
+
+      - name: Install Cypress
+        run: |
+          npx cypress install
+          $(npm bin)/cypress verify
+
+      - name: Run Cypress Tests
+        run: |
+          $(npm bin)/cypress run --headless --browser chrome
