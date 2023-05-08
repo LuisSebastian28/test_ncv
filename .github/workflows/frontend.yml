@@ -32,11 +32,11 @@ jobs:
       - name: Unit Tests
         run: npm test -- --watchAll=false  --passWithNoTests
 
-      - name: Install Cypress
-        run: |
-          npx cypress install
-          $(npm bin)/cypress verify
+      - name: Wait for server to start
+        run: npx wait-on http://localhost:3000
 
-      - name: Run Cypress Tests
-        run: |
-          $(npm bin)/cypress run --headless --browser chrome
+      - name: Run Cypress tests
+        run: npm run test:e2e
+        env:
+          CI: true
+          CYPRESS_baseUrl: http://localhost:3000
