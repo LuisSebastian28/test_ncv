@@ -26,11 +26,17 @@ jobs:
       - name: Install Prettier
         run: npm i -g prettier
 
+      - name: Cache Cypress binary
+        uses: cypress-io/github-action-cache@v2
+
       - name: Run ESLint
         run: npm run lint
 
       - name: Unit Tests
         run: npm test -- --watchAll=false  --passWithNoTests
+        
+      - name: Start server
+        run: npm run start:ci &
 
       - name: Wait for server to start
         run: npx wait-on http://localhost:3000
