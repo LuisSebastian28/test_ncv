@@ -34,15 +34,8 @@ jobs:
 
       - name: Unit Tests
         run: npm test -- --watchAll=false  --passWithNoTests
-        
-      - name: Start server
-        run: npm run start:ci &
 
-      - name: Wait for server to start
-        run: npx wait-on http://localhost:3000
-
-      - name: Run Cypress tests
-        run: npm run test:e2e
-        env:
-          CI: true
-          CYPRESS_baseUrl: http://localhost:3000
+      - name: Cypress.io
+        uses: cypress-io/github-action@v5.7.1
+        with:
+          start: npm start
