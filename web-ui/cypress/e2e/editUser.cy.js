@@ -7,14 +7,18 @@ describe('Edit users end to end tests', () => {
     cy.intercept('GET', 'https://ncv-api-staging.azurewebsites.net/api/auth/Sebas', {
       fixture: 'Users/testUser.json'
     }).as('getBasicInfo',);
+    
     cy.intercept('PUT', 'https://ncv-api-staging.azurewebsites.net/api/auth/Sebas', {
-      "email": "testUser@gmail.com",
-      "cellPhone": randomNumber,
-      "firstName": "User",
-      "lastName": "Test",
-      "role": "Administrador",
-      "rol": "Administrador"
-    }).as('putInfo',);
+      statusCode: 200,
+      body: {
+        "email": "testUser@gmail.com",
+        "cellPhone": randomNumber,
+        "firstName": "User",
+        "lastName": "Test",
+        "role": "Administrador",
+        "rol": "Administrador"
+      }
+    }).as('updateUserInfo');
 
     cy.intercept('GET', 'https://ncv-api-staging.azurewebsites.net/api/auth', [
       {
