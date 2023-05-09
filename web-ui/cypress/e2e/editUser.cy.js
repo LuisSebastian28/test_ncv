@@ -14,7 +14,7 @@ describe('Edit users end to end tests', () => {
       "lastName": "Test",
       "role": "Administrador",
       "rol": "Administrador"
-    }).as('getBasicInfo',);
+    }).as('putInfo',);
 
     cy.intercept('GET', 'https://ncv-api-staging.azurewebsites.net/api/auth', [
       {
@@ -25,7 +25,7 @@ describe('Edit users end to end tests', () => {
         "nameRole": "Administrador",
         "id": "Sebas"
       }
-    ]).as('getBasicInfo',);
+    ]).as('getInfo',);
     cy.visit('/vista-usuarios/Sebas');
     cy.get('#cellPhone')
       .clear()
