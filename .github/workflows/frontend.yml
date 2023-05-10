@@ -31,12 +31,11 @@ jobs:
 
       - name: Unit Tests
         run: npm test -- --watchAll=false  --passWithNoTests
-      - name: Set Cypress configuration
-        run: npx cypress run --config viewportWidth=1280,viewportHeight=720,chromeWebSecurity=false
-
 
       - name: E2E Tests
         uses: cypress-io/github-action@v4
+        env:
+          CYPRESS_SESSION_STORAGE_KEY: CompleteAccess
         with:
           start: npm start
           wait-on: "http://localhost:3000"
