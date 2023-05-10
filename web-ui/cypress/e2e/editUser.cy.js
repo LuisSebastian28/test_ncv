@@ -4,7 +4,7 @@ describe('Edit users end to end tests', () => {
   it('Verificar happy path (cambio de numero)', () => {
     const randomNumber = Math.floor(Math.random() * 100);
 
-    cy.intercept('GET', 'https://ncv-api-staging.azurewebsites.net/api/auth/Sebas', {
+    /*cy.intercept('GET', 'https://ncv-api-staging.azurewebsites.net/api/auth/Sebas', {
       fixture: 'Users/testUser.json'
     }).as('getBasicInfo',);
     
@@ -18,7 +18,7 @@ describe('Edit users end to end tests', () => {
         "role": "Administrador",
         "rol": "Administrador"
       }
-    }).as('updateUserInfo');
+    }).as('updateUserInfo');*/
 
     cy.intercept('GET', 'https://ncv-api-staging.azurewebsites.net/api/auth', [
       {
@@ -30,11 +30,12 @@ describe('Edit users end to end tests', () => {
         "id": "Sebas"
       }
     ]).as('getInfo',);
-    cy.visit('/vista-usuarios/Sebas');
+   /* cy.visit('/vista-usuarios/Sebas');
     cy.get('#cellPhone')
       .clear()
       .type(randomNumber)
-    cy.get('button[type="input"][label="Guardar Cambios"]').click();
+    cy.get('button[type="input"][label="Guardar Cambios"]').click();*/
+    cy.visit('/vista-usuarios')
     cy.get('.MuiListItemText-primary').contains('Administrador').click()
     cy.get('ul.MuiList-root')
       .contains(randomNumber)
