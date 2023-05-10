@@ -19,7 +19,6 @@ describe('Edit users end to end tests', () => {
         "rol": "Administrador"
       }
     }).as('updateUserInfo');*/
-
     cy.intercept('GET', 'https://ncv-api-staging.azurewebsites.net/api/auth', [
       {
         "email": "testUser@gmail.com",
