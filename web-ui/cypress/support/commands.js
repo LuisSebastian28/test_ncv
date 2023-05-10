@@ -36,3 +36,16 @@ Cypress.Commands.add('login', (email, password) => {
 
     cy.url().should('include', 'inicio-ncv');
 }) 
+
+Cypress.Commands.add('setSessionStorage', (key, value) => {
+    cy.window().then((window) => {
+      window.sessionStorage.setItem(key, JSON.stringify(value));
+    });
+  });
+  
+  Cypress.Commands.add('getSessionStorage', (key) => {
+    cy.window().then((window) => {
+      const value = window.sessionStorage.getItem(key);
+      return JSON.parse(value);
+    });
+  });
